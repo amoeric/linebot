@@ -1,0 +1,23 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: eric
+  password: 594233
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: linebot_development
+
+test:
+  <<: *default
+  database: linebot_test
+
+production:
+  <<: *default
+  database: linebot_production
+  username: linebot
+  password: <%= ENV['LINEBOT_DATABASE_PASSWORD'] %>
